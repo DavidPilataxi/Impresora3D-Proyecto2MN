@@ -22,7 +22,9 @@ Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a
 
 - Accede al informe del proyecto haciendo un click. -
 
-[![Haz click en el informe](imagen2.png)](informe)
+<a href="https://github.com/DavidPilataxi/Impresora3D-Proyecto2MN/blob/main/Informe/Informe.ipynb">
+  <img src="imagen2.png" alt="Haz clic para ver el informe" width="150">
+</a>
 
 ## DESCRIPCION DEL CODIGO. -
 
