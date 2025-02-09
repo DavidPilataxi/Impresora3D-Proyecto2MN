@@ -34,3 +34,7 @@ Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a
 
 
 ## EJEMPLO DEL PROYECTO. -
+
+Hacer click en el video para ver su ejecución
+
+[![Haz clic para ver el video](imagen3.png)](Video_Ejemplo.mp4)
