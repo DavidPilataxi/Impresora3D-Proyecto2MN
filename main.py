@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog
+import os
 import xml.etree.ElementTree as ET
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -26,11 +26,12 @@ class Impresora3DSimulada:
         self.root.resizable(False, False)
         self.centrar_ventana()
 
-        # Botón para cargar el archivo SVG
-        self.btn_cargar = tk.Button(root,
-                                    text="Cargar Modelo SVG",
-                                    command=self.cargar_archivo)
-        self.btn_cargar.pack()
+        # Botones para cargar archivos SVG disponibles
+        self.lbl_seleccion = tk.Label(root, text="Seleccionar Modelo SVG:")
+        self.lbl_seleccion.pack()
+        self.frame_modelos = tk.Frame(root)
+        self.frame_modelos.pack()
+        self.cargar_botones_modelos()
 
         # Campos de entrada para resolución
         self.lbl_resolucion_x = tk.Label(root, text="Resolución horizontal:")
@@ -47,7 +48,7 @@ class Impresora3DSimulada:
         self.lbl_velocidad = tk.Label(root, text="Velocidad de impresión:")
         self.lbl_velocidad.pack()
         self.slider_velocidad = tk.Scale(root,
-                                         from_=1,
+                                         from_=0,
                                          to=100,
                                          orient="horizontal")
         self.slider_velocidad.set(50)
@@ -77,14 +78,21 @@ class Impresora3DSimulada:
         y = (self.root.winfo_screenheight() // 5) - (height // 5)
         self.root.geometry(f'+{x}+{y}')
 
-    def cargar_archivo(self):
-        file_path = filedialog.askopenfilename(
-            initialdir="models",
-            title="Seleccionar archivo SVG",
-            filetypes=(("Archivos SVG", "*.svg"), ("Todos los archivos",
-                                                   "*.*")))
-        if file_path:
-            self.procesar_svg(file_path)
+    def cargar_botones_modelos(self):
+        """Cargar los modelos SVG disponibles en la interfaz como botones."""
+        carpeta_modelos = "models"
+        if not os.path.exists(carpeta_modelos):
+            os.makedirs(carpeta_modelos)
+        archivos_svg = [
+            f for f in os.listdir(carpeta_modelos) if f.endswith(".svg")
+        ]
+
+        for archivo in archivos_svg:
+            btn_modelo = tk.Button(self.frame_modelos,
+                                   text=archivo,
+                                   command=lambda f=archivo: self.procesar_svg(
+                                       os.path.join(carpeta_modelos, f)))
+            btn_modelo.pack()
 
     def procesar_svg(self, file_path):
         tree = ET.parse(file_path)
@@ -113,19 +121,25 @@ class Impresora3DSimulada:
     def generar_trayectoria(self):
         if not self.puntos:
             return
-
-        min_x = min(p[0] for p in self.puntos)
-        max_x = max(p[0] for p in self.puntos)
-        min_y = min(p[1] for p in self.puntos)
-        max_y = max(p[1] for p in self.puntos)
+        poligono_path = Path(self.puntos)
         res_x = float(self.entry_resolucion_x.get() or 1)
         res_y = float(self.entry_resolucion_y.get() or 1)
 
-        poligono_path = Path(self.puntos)
-        self.trayectoria = []
+        min_x, max_x = min(p[0]
+                           for p in self.puntos), max(p[0]
+                                                      for p in self.puntos)
+        min_y, max_y = min(p[1]
+                           for p in self.puntos), max(p[1]
+                                                      for p in self.puntos)
 
-        for x in np.arange(min_x, max_x + res_x, res_x):
-            for y in np.arange(min_y, max_y + res_y, res_y):
+        self.trayectoria = []
+        reverse = False
+        for x in np.arange(min_x, max_x, res_x):
+            y_values = np.arange(min_y, max_y, res_y)
+            if reverse:
+                y_values = y_values[::-1]
+            reverse = not reverse
+            for y in y_values:
                 if punto_en_poligono(poligono_path, (x, y)):
                     self.trayectoria.append((x, y))
 
