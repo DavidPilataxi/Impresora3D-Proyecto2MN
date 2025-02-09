@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 from matplotlib.path import Path  # Para verificar si un punto está dentro del polígono
+from tkinter import messagebox
 
 
 def punto_en_poligono(path, punto, tolerancia=1e-2):
@@ -144,6 +145,11 @@ class Impresora3DSimulada:
                     self.trayectoria.append((x, y))
 
     def iniciar_impresion(self):
+        if not self.puntos or not self.entry_resolucion_x.get(
+        ) or not self.entry_resolucion_y.get():
+            messagebox.showerror(
+                "Error", "Falta cargar un modelo o definir la resolución")
+            return
         self.generar_trayectoria()
         self.index_imprimir = 0
         self.ax.clear()
