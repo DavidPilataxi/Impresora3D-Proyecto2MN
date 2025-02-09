@@ -32,6 +32,9 @@ Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a
 
 ## PRESENTACION DEL PROYECTO. -
 
+<a href="https://www.canva.com/design/DAGepYhLh4Y/OibZ2Oer9v-EyWLqdq-puQ/edit">
+  <img src="canva.jpg" alt="Haz clic para abrir Canva" width="150">
+</a>
 
 ## EJEMPLO DEL PROYECTO. -
 
