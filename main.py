@@ -27,6 +27,9 @@ class Impresora3DSimulada:
         self.root.resizable(False, False)
         self.centrar_ventana()
 
+        # Inicializar lista de botones antes de cargar los modelos
+        self.botones_modelos = []
+
         # Botones para cargar archivos SVG disponibles
         self.lbl_seleccion = tk.Label(root, text="Seleccionar Modelo SVG:")
         self.lbl_seleccion.pack()
@@ -61,6 +64,12 @@ class Impresora3DSimulada:
                                       command=self.iniciar_impresion)
         self.btn_imprimir.pack()
 
+        # Botón para reiniciar la simulación
+        self.btn_reiniciar = tk.Button(root,
+                                       text="Reiniciar Simulación",
+                                       command=self.reiniciar_simulacion)
+        self.btn_reiniciar.pack()
+
         # Área de visualización
         self.fig, self.ax = plt.subplots(figsize=(6, 6))
         self.canvas = FigureCanvasTkAgg(self.fig, master=root)
@@ -70,13 +79,14 @@ class Impresora3DSimulada:
         self.trayectoria = []
         self.index_imprimir = 0
         self.incremento_puntos = 10
+        self.botones_modelos = []
 
     def centrar_ventana(self):
         self.root.update_idletasks()
         width = self.root.winfo_width()
         height = self.root.winfo_height()
         x = (self.root.winfo_screenwidth() // 2) - (width // 2)
-        y = (self.root.winfo_screenheight() // 5) - (height // 5)
+        y = (self.root.winfo_screenheight() // 12) - (height // 10)
         self.root.geometry(f'+{x}+{y}')
 
     def cargar_botones_modelos(self):
@@ -94,6 +104,7 @@ class Impresora3DSimulada:
                                    command=lambda f=archivo: self.procesar_svg(
                                        os.path.join(carpeta_modelos, f)))
             btn_modelo.pack()
+            self.botones_modelos.append(btn_modelo)
 
     def procesar_svg(self, file_path):
         tree = ET.parse(file_path)
@@ -150,12 +161,32 @@ class Impresora3DSimulada:
             messagebox.showerror(
                 "Error", "Falta cargar un modelo o definir la resolución")
             return
+
+        self.btn_imprimir.config(state=tk.DISABLED)
+        for btn in self.botones_modelos:
+            btn.config(state=tk.DISABLED)
+        self.entry_resolucion_x.config(state=tk.DISABLED)
+        self.entry_resolucion_y.config(state=tk.DISABLED)
+        self.slider_velocidad.config(state=tk.DISABLED)
+
         self.generar_trayectoria()
         self.index_imprimir = 0
         self.ax.clear()
         self.dibujar_modelo()
         self.ax.set_title("Simulación de Impresión")
         self.imprimir_paso()
+
+    def reiniciar_simulacion(self):
+        self.ax.clear()
+        self.canvas.draw()
+        self.puntos = []
+        self.trayectoria = []
+        self.btn_imprimir.config(state=tk.NORMAL)
+        for btn in self.botones_modelos:
+            btn.config(state=tk.NORMAL)
+        self.entry_resolucion_x.config(state=tk.NORMAL)
+        self.entry_resolucion_y.config(state=tk.NORMAL)
+        self.slider_velocidad.config(state=tk.NORMAL)
 
     def imprimir_paso(self):
         if self.index_imprimir < len(self.trayectoria):
@@ -171,7 +202,6 @@ class Impresora3DSimulada:
             print("Impresión completada.")
 
     def cerrar_programa(self):
-        print("Cerrando programa...")
         self.root.quit()
         self.root.destroy()
 
