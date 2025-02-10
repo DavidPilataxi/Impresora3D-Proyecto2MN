@@ -8,7 +8,7 @@
 - **DAVID PILATAXI**
 - **MIJAEL MOLINA**
 
-## DESCRIPCION. -
+## DESCRIPCIÓN. -
 
 Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a partir de un modelo digital. Para ello, la impresora 3D recorre la superficie del objeto capa por capa, de abajo hacia arriba, hasta cubrir el modelo.
 
