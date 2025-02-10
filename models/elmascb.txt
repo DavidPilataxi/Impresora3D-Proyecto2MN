@@ -1,0 +1,47 @@
+svg
+   width=200
+   height=200
+   xmlns=httpwww.w3.org2000svg
+  
+  !-- Base del modelo --
+  rect x=10 y=10 width=180 height=180 fill=lightgray stroke=black stroke-width=1
+
+  !-- Patrón de fractales (geometría recursiva) --
+  path
+     d=M 20,20 L 180,20 L 180,180 L 20,180 Z
+        M 40,40 L 160,40 L 160,160 L 40,160 Z
+        M 60,60 L 140,60 L 140,140 L 60,140 Z
+        M 80,80 L 120,80 L 120,120 L 80,120 Z
+     fill=none stroke=black stroke-width=0.5
+
+  !-- Detalles finos (espirales y curvas complejas) --
+  path
+     d=M 100,100 Q 120,80 140,100 T 180,100
+        M 100,100 Q 80,120 100,140 T 100,180
+        M 100,100 Q 120,120 140,100 T 180,100
+        M 100,100 Q 80,80 100,60 T 100,20
+     fill=none stroke=blue stroke-width=0.3
+
+  !-- Agujeros internos y patrones repetitivos --
+  circle cx=50 cy=50 r=5 fill=white
+  circle cx=150 cy=50 r=5 fill=white
+  circle cx=50 cy=150 r=5 fill=white
+  circle cx=150 cy=150 r=5 fill=white
+  circle cx=100 cy=100 r=10 fill=white
+
+  !-- Texturas pequeñas y repetitivas --
+  rect x=30 y=30 width=2 height=2 fill=black
+  rect x=170 y=30 width=2 height=2 fill=black
+  rect x=30 y=170 width=2 height=2 fill=black
+  rect x=170 y=170 width=2 height=2 fill=black
+  rect x=100 y=100 width=2 height=2 fill=black
+
+  !-- Líneas diagonales cruzadas --
+  line x1=10 y1=10 x2=190 y2=190 stroke=red stroke-width=0.2
+  line x1=190 y1=10 x2=10 y2=190 stroke=red stroke-width=0.2
+
+  !-- Patrón de ondas (curvas sinusoidales) --
+  path
+     d=M 10,100 C 30,80 50,120 70,100 S 110,80 130,100 S 170,120 190,100
+     fill=none stroke=green stroke-width=0.4
+svg
