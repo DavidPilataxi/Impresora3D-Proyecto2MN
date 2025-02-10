@@ -6,8 +6,9 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 from matplotlib.path import Path  # Para verificar si un punto está dentro del polígono
 from tkinter import messagebox
-from tkinter import filedialog 
-from PIL import Image, ImageTk 
+from tkinter import filedialog
+from PIL import Image, ImageTk
+
 
 def punto_en_poligono(path, punto, tolerancia=1e-2):
     """Verifica si un punto está dentro o en el borde del polígono con un margen de tolerancia."""
@@ -40,10 +41,12 @@ class Impresora3DSimulada:
         self.lbl_logo = tk.Label(self.frame_titulo, image=self.logo)
         self.lbl_logo.pack(side="left")
 
-        self.lbl_titulo = tk.Label(self.frame_titulo, text="Proyecto segundo bimestre", font=("Arial", 16))
+        self.lbl_titulo = tk.Label(self.frame_titulo,
+                                   text="Proyecto segundo bimestre",
+                                   font=("Arial", 16))
         self.lbl_titulo.pack(side="left", padx=10)
 
- # Botones para cargar archivos SVG disponibles
+        # Botones para cargar archivos SVG disponibles
         self.lbl_seleccion = tk.Label(root, text="Seleccionar Modelo SVG:")
         self.lbl_seleccion.pack()
         self.frame_modelos = tk.Frame(root)
@@ -68,7 +71,7 @@ class Impresora3DSimulada:
         self.lbl_velocidad = tk.Label(root, text="Velocidad de impresión:")
         self.lbl_velocidad.pack()
         self.slider_velocidad = tk.Scale(root,
-                                         from_=0,
+                                         from_=1,
                                          to=100,
                                          orient="horizontal")
         self.slider_velocidad.set(50)
@@ -109,7 +112,9 @@ class Impresora3DSimulada:
         default_dir = os.path.join(os.getcwd(), "models")
         if not os.path.exists(default_dir):
             os.makedirs(default_dir)
-        file_path = filedialog.askopenfilename(initialdir=default_dir, filetypes=[("Archivos SVG", "*.svg")])
+        file_path = filedialog.askopenfilename(initialdir=default_dir,
+                                               filetypes=[("Archivos SVG",
+                                                           "*.svg")])
         if file_path:
             self.procesar_svg(file_path)
 
