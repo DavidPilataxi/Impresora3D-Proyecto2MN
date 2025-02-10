@@ -1,6 +1,6 @@
-# 🖨️ IMPRESORA 3D Proyecto#2 MN
+# ️🖨️ IMPRESORA 3D Proyecto#2 MN
 
- Repositorio del Proyecto #2 de Métodos Numéricos, simulación de una Impresora 3D.
+Repositorio del Proyecto #2 de Métodos Numéricos, simulación de una Impresora 3D.
 
 ## INTEGRANTES: 
 
@@ -12,7 +12,7 @@
 
 Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a partir de un modelo digital. Para ello, la impresora 3D recorre la superficie del objeto capa por capa, de abajo hacia arriba, hasta cubrir el modelo.
 
-![Grafica_De_Impresora_3D](imagen1.png)
+![Grafica_De_Impresora_3D](Img/imagen1.png)
 
 ## OBJETIVO. -
 
@@ -23,7 +23,7 @@ Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a
 Click aquí:
 
 <a href="https://github.com/DavidPilataxi/Impresora3D-Proyecto2MN/blob/main/Informe/Informe.ipynb">
-  <img src="imagen2.png" alt="Haz clic para ver el informe" width="150">
+ <img src="Img/imagen2.png" alt="Haz clic para ver el informe" width="150">
 </a>
 
 ## DESCRIPCIÓN DEL CÓDIGO. -
@@ -35,19 +35,18 @@ Este código es una simulación gráfica de la trayectoria de una impresora 3D e
 Click aquí:
 
 <a href="https://www.canva.com/design/DAGepYhLh4Y/OibZ2Oer9v-EyWLqdq-puQ/edit">
-  <img src="imagen4.png" alt="Haz clic para abrir Canva" width="150">
+ <img src="Img/imagen4.png" alt="Haz clic para abrir Canva" width="150">
 </a>
 
 ## EJEMPLO DEL PROYECTO. -
 
 Click aquí:
 
-[![Haz clic para ver el video](imagen3.png)](Video_Ejemplo.mp4)
-
+[![Haz clic para ver el video](Img/imagen3.png)](Video_Ejemplo.mp4)
 
 ## TECNOLOGÍAS UTILIZADAS. -
 
-La creación de este trabajo fue posible gracias a las siguientes herramientas:  
+La creación de este trabajo fue posible gracias a las siguientes herramientas: 
 
 - Backend: Python, Tkinter, Matplotlib, xml.etree.ElementTree, NumPy
 

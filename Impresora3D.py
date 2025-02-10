@@ -86,7 +86,7 @@ class Impresora3DSimulada:
         self.frame_titulo = tk.Frame(self.canvas_bg, bg="#FFC0CB")
         self.frame_titulo.pack(pady=10)
 
-        original_logo = Image.open("EPN_logo_big.png")
+        original_logo = Image.open("Img/EPN_logo_big.png")
         resized_logo = original_logo.resize((80, 50), Image.LANCZOS)
         self.logo = ImageTk.PhotoImage(resized_logo)
 
