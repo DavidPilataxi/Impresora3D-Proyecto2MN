@@ -1,6 +1,6 @@
-# IMPRESORA_3D-Proyecto2_MN
+# 🖨️ IMPRESORA 3D Proyecto#2 MN
 
- Proyecto #2 de Métodos Numéricos, Impresora 3D
+ Repositorio del Proyecto #2 de Métodos Numéricos, simulación de una Impresora 3D.
 
 ## INTEGRANTES: 
 
@@ -28,7 +28,7 @@ Click aquí:
 
 ## DESCRIPCIÓN DEL CÓDIGO. -
 
-Este proyecto es una simulación gráfica de la trayectoria de una impresora 3D en un plano bidimensional (2D). La simulación utiliza una interfaz gráfica desarrollada con Tkinter y Matplotlib para cargar archivos SVG que representan figuras geométricas. Una vez cargado el archivo SVG, el programa permite configurar la resolución de impresión (a menor resolución, mayor es el tiempo de impresión) y simula el proceso de llenado de la figura, mostrando una animación de cómo la impresora 3D recorrería la figura capa por capa.
+Este código es una simulación gráfica de la trayectoria de una impresora 3D en un plano bidimensional (2D). La simulación utiliza una interfaz gráfica desarrollada con Tkinter y Matplotlib para cargar archivos SVG que representan figuras geométricas. Una vez cargado el archivo SVG, el programa permite configurar la resolución de impresión (a menor resolución, mayor es el tiempo de impresión) y también modificar la velocidad de dibujado. Finalmente, simula el proceso de llenado de la figura, mostrando una animación de cómo la impresora 3D recorrería la figura capa por capa.
 
 ## PRESENTACIÓN DEL PROYECTO. -
 
@@ -43,3 +43,16 @@ Click aquí:
 Click aquí:
 
 [![Haz clic para ver el video](imagen3.png)](Video_Ejemplo.mp4)
+
+
+## TECNOLOGÍAS UTILIZADAS. -
+
+La creación de este trabajo fue posible gracias a las siguientes herramientas:  
+
+- Backend: Python, Tkinter, Matplotlib, xml.etree.ElementTree, NumPy
+
+- Frontend: Tkinter (interfaz gráfica), Matplotlib (visualización)
+
+- Colaboración: GitHub
+
+- Presentación: Canva
