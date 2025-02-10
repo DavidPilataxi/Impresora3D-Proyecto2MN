@@ -6,7 +6,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 from matplotlib.path import Path  # Para verificar si un punto está dentro del polígono
 from tkinter import messagebox
-
+from tkinter import filedialog 
+from PIL import Image, ImageTk 
 
 def punto_en_poligono(path, punto, tolerancia=1e-2):
     """Verifica si un punto está dentro o en el borde del polígono con un margen de tolerancia."""
@@ -27,15 +28,30 @@ class Impresora3DSimulada:
         self.root.resizable(False, False)
         self.centrar_ventana()
 
-        # Inicializar lista de botones antes de cargar los modelos
-        self.botones_modelos = []
+        # Título y logo
+        self.frame_titulo = tk.Frame(root)
+        self.frame_titulo.pack(pady=10)
 
-        # Botones para cargar archivos SVG disponibles
+        # Redimensionar la imagen del logo
+        original_logo = Image.open("EPN_logo_big.png")
+        resized_logo = original_logo.resize((80, 50), Image.LANCZOS)
+        self.logo = ImageTk.PhotoImage(resized_logo)
+
+        self.lbl_logo = tk.Label(self.frame_titulo, image=self.logo)
+        self.lbl_logo.pack(side="left")
+
+        self.lbl_titulo = tk.Label(self.frame_titulo, text="Proyecto segundo bimestre", font=("Arial", 16))
+        self.lbl_titulo.pack(side="left", padx=10)
+
+ # Botones para cargar archivos SVG disponibles
         self.lbl_seleccion = tk.Label(root, text="Seleccionar Modelo SVG:")
         self.lbl_seleccion.pack()
         self.frame_modelos = tk.Frame(root)
         self.frame_modelos.pack()
-        self.cargar_botones_modelos()
+        btn_modelo = tk.Button(self.frame_modelos,
+                               text="Cargar archivo SVG",
+                               command=self.seleccionar_archivo_svg)
+        btn_modelo.pack()
 
         # Campos de entrada para resolución
         self.lbl_resolucion_x = tk.Label(root, text="Resolución horizontal:")
@@ -89,22 +105,13 @@ class Impresora3DSimulada:
         y = (self.root.winfo_screenheight() // 12) - (height // 10)
         self.root.geometry(f'+{x}+{y}')
 
-    def cargar_botones_modelos(self):
-        """Cargar los modelos SVG disponibles en la interfaz como botones."""
-        carpeta_modelos = "models"
-        if not os.path.exists(carpeta_modelos):
-            os.makedirs(carpeta_modelos)
-        archivos_svg = [
-            f for f in os.listdir(carpeta_modelos) if f.endswith(".svg")
-        ]
-
-        for archivo in archivos_svg:
-            btn_modelo = tk.Button(self.frame_modelos,
-                                   text=archivo,
-                                   command=lambda f=archivo: self.procesar_svg(
-                                       os.path.join(carpeta_modelos, f)))
-            btn_modelo.pack()
-            self.botones_modelos.append(btn_modelo)
+    def seleccionar_archivo_svg(self):
+        default_dir = os.path.join(os.getcwd(), "models")
+        if not os.path.exists(default_dir):
+            os.makedirs(default_dir)
+        file_path = filedialog.askopenfilename(initialdir=default_dir, filetypes=[("Archivos SVG", "*.svg")])
+        if file_path:
+            self.procesar_svg(file_path)
 
     def procesar_svg(self, file_path):
         tree = ET.parse(file_path)

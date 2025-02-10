@@ -51,10 +51,7 @@ class Impresora3DSimulada:
         # Cursor para velocidad de impresión
         self.lbl_velocidad = tk.Label(root, text="Velocidad de impresión:")
         self.lbl_velocidad.pack()
-        self.slider_velocidad = tk.Scale(root,
-                                         from_=0,
-                                         to=100,
-                                         orient="horizontal")
+        self.slider_velocidad = tk.Scale(root,from_=0,to=100,orient="horizontal")
         self.slider_velocidad.set(50)
         self.slider_velocidad.pack()
 
