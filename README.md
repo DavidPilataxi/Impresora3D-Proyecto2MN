@@ -20,17 +20,19 @@ Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a
 
 ## INFORME DEL PROYECTO. -
 
-- Accede al informe del proyecto haciendo un click. -
+Click aquí:
 
 <a href="https://github.com/DavidPilataxi/Impresora3D-Proyecto2MN/blob/main/Informe/Informe.ipynb">
   <img src="imagen2.png" alt="Haz clic para ver el informe" width="150">
 </a>
 
-## DESCRIPCION DEL CODIGO. -
+## DESCRIPCIÓN DEL CÓDIGO. -
 
-- Este código simula la trayectoria de una impresora 3D vista bidimensional, lo cual usa una interfaz grafica para ingresar a los archivos svg y tiene opciones para poner las resoluciones de 0.1 hasta 0.5, luego genera la animacion de un llenado en el archivo svg lo cual es una figura, si es de 0.1 la resolucion se demorara en llenarse la figura, sino su ejecucion es más rapida si se pone la resolucion de 0.5. 
+Este proyecto es una simulación gráfica de la trayectoria de una impresora 3D en un plano bidimensional (2D). La simulación utiliza una interfaz gráfica desarrollada con Tkinter y Matplotlib para cargar archivos SVG que representan figuras geométricas. Una vez cargado el archivo SVG, el programa permite configurar la resolución de impresión (a menor resolución, mayor es el tiempo de impresión) y simula el proceso de llenado de la figura, mostrando una animación de cómo la impresora 3D recorrería la figura capa por capa.
 
-## PRESENTACION DEL PROYECTO. -
+## PRESENTACIÓN DEL PROYECTO. -
+
+Click aquí:
 
 <a href="https://www.canva.com/design/DAGepYhLh4Y/OibZ2Oer9v-EyWLqdq-puQ/edit">
   <img src="imagen4.png" alt="Haz clic para abrir Canva" width="150">
@@ -38,6 +40,6 @@ Una impresora 3D es una máquina que permite imprimir objetos tridimensionales a
 
 ## EJEMPLO DEL PROYECTO. -
 
-Hacer click en el video para ver su ejecución
+Click aquí:
 
 [![Haz clic para ver el video](imagen3.png)](Video_Ejemplo.mp4)
