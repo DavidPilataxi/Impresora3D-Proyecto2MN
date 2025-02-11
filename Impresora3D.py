@@ -14,11 +14,9 @@ def punto_en_poligono(path, punto, tolerancia=1e-2):
     """
     Verifica si un punto está dentro del polígono o en su contorno
     """
-    # Primero verificamos si el punto está dentro del polígono
     if path.contains_point(punto):
         return True
 
-    # Luego verificamos si el punto está en el contorno
     vertices = path.vertices
     for i in range(len(vertices) - 1):
         p1 = vertices[i]
@@ -32,34 +30,24 @@ def punto_en_segmento(p1, p2, p, tolerancia=1e-2):
     """
     Verifica si el punto p está sobre el segmento de línea entre p1 y p2.
     """
-    # Convertir a arrays de numpy para cálculos vectoriales
     p1 = np.array(p1)
     p2 = np.array(p2)
     p = np.array(p)
 
-    # Vector del segmento
     segmento = p2 - p1
-    # Vector del punto al inicio del segmento
     punto_a_p1 = p - p1
 
-    # Longitud del segmento al cuadrado
     longitud_segmento_sq = np.dot(segmento, segmento)
 
     if longitud_segmento_sq == 0:
-        # p1 y p2 son el mismo punto
         return np.linalg.norm(punto_a_p1) < tolerancia
 
-    # Proyección del punto sobre la línea
     t = np.dot(punto_a_p1, segmento) / longitud_segmento_sq
 
     if t < 0 or t > 1:
-        # El punto está fuera del segmento
         return False
 
-    # Punto proyectado sobre el segmento
     proyeccion = p1 + t * segmento
-
-    # Verificar si la distancia al segmento es menor que la tolerancia
     return np.linalg.norm(p - proyeccion) < tolerancia
 
 
@@ -183,7 +171,6 @@ class Impresora3DSimulada:
         self.trayectoria = []
         self.index_imprimir = 0
         self.incremento_puntos = 10
-        self.botones_modelos = []
         self.poligono_path = None
 
     def centrar_ventana(self):
@@ -218,7 +205,6 @@ class Impresora3DSimulada:
                                for i in range(0, len(coords), 2)]
 
         if self.puntos:
-            # Asegurarse de que el polígono esté cerrado
             if self.puntos[0] != self.puntos[-1]:
                 self.puntos.append(self.puntos[0])
             self.poligono_path = Path(self.puntos)
@@ -243,7 +229,6 @@ class Impresora3DSimulada:
                                  "Las resoluciones deben ser números válidos")
             return
 
-        # Obtener límites del polígono
         min_x = min(p[0] for p in self.puntos)
         max_x = max(p[0] for p in self.puntos)
         min_y = min(p[1] for p in self.puntos)
@@ -252,7 +237,6 @@ class Impresora3DSimulada:
         self.trayectoria = []
         reverse = False
 
-        # Generar puntos en un patrón de zigzag
         for x in np.arange(min_x, max_x + res_x, res_x):
             y_values = np.arange(min_y, max_y + res_y, res_y)
             if reverse:
@@ -260,7 +244,6 @@ class Impresora3DSimulada:
 
             for y in y_values:
                 punto = (x, y)
-                # Solo agregar el punto si está dentro del polígono o en su contorno
                 if punto_en_poligono(self.poligono_path, punto):
                     self.trayectoria.append(punto)
 
@@ -275,13 +258,10 @@ class Impresora3DSimulada:
 
         # Deshabilitar controles durante la impresión
         self.btn_imprimir.config(state=tk.DISABLED)
-        for btn in self.botones_modelos:
-            btn.config(state=tk.DISABLED)
         self.entry_resolucion_x.config(state=tk.DISABLED)
         self.entry_resolucion_y.config(state=tk.DISABLED)
         self.slider_velocidad.config(state=tk.DISABLED)
 
-        # Iniciar simulación
         self.generar_trayectoria()
         self.index_imprimir = 0
         self.ax.clear()
@@ -298,8 +278,6 @@ class Impresora3DSimulada:
 
         # Habilitar controles
         self.btn_imprimir.config(state=tk.NORMAL)
-        for btn in self.botones_modelos:
-            btn.config(state=tk.NORMAL)
         self.entry_resolucion_x.config(state=tk.NORMAL)
         self.entry_resolucion_y.config(state=tk.NORMAL)
         self.slider_velocidad.config(state=tk.NORMAL)
@@ -317,11 +295,7 @@ class Impresora3DSimulada:
         else:
             print("Impresión completada.")
             messagebox.showinfo("Información", "Impresión completada.")
-
-            # Habilitar controles
             self.btn_imprimir.config(state=tk.NORMAL)
-            for btn in self.botones_modelos:
-                btn.config(state=tk.NORMAL)
             self.entry_resolucion_x.config(state=tk.NORMAL)
             self.entry_resolucion_y.config(state=tk.NORMAL)
             self.slider_velocidad.config(state=tk.NORMAL)

@@ -1,6 +1,12 @@
 # 🖨️ IMPRESORA 3D Proyecto#2 MN
 
  Repositorio del Proyecto #2 de Métodos Numéricos, simulación de una Impresora 3D.
+ 
+ Instrucciones para utilizar este programa:
+1. Ejecutar en entorno de python:  
+ - pip install -r Documentación/requirements.txt
+2. Ejecutar Impresora3D.py
+
 
 ## INTEGRANTES: 
 
