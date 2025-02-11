@@ -108,20 +108,22 @@ class Impresora3DSimulada:
         btn_modelo.pack()
 
         # Campos de entrada para resolución
-        self.lbl_resolucion_x = tk.Label(self.canvas_bg,
-                                         text="Resolución horizontal:",
-                                         font=("Helvetica", 12, "bold"),
-                                         bg="#FFC0CB")
+        self.lbl_resolucion_x = tk.Label(
+            self.canvas_bg,
+            text="Resolución horizontal: (Valores recomendados 0.1 a 0.2)",
+            font=("Helvetica", 12, "bold"),
+            bg="#FFC0CB")
         self.lbl_resolucion_x.pack()
 
         self.entry_resolucion_x = tk.Entry(self.canvas_bg,
                                            font=("Helvetica", 10))
         self.entry_resolucion_x.pack()
 
-        self.lbl_resolucion_y = tk.Label(self.canvas_bg,
-                                         text="Resolución vertical:",
-                                         font=("Helvetica", 12, "bold"),
-                                         bg="#FFC0CB")
+        self.lbl_resolucion_y = tk.Label(
+            self.canvas_bg,
+            text="Resolución vertical: (Valores recomendados 0.1 a 0.2)",
+            font=("Helvetica", 12, "bold"),
+            bg="#FFC0CB")
         self.lbl_resolucion_y.pack()
 
         self.entry_resolucion_y = tk.Entry(self.canvas_bg,

@@ -2,10 +2,18 @@
 
  Repositorio del Proyecto #2 de Métodos Numéricos, simulación de una Impresora 3D.
  
- Instrucciones para utilizar este programa:
-1. Ejecutar en entorno de python:  
- - pip install -r Documentación/requirements.txt
-2. Ejecutar Impresora3D.py
+ ¡Instrucciones para utilizar este programa!
+1. Clonar repositorio (varias formas):
+- Ejecutar el comando en la terminal de Vs Code: git clone https://github.com/DavidPilataxi/Impresora3D-Proyecto2MN.git
+- Abrir el repositorio con GitHub Desktop desde el navegador.
+- Descargar y descomprimir el archivo ZIP.
+2. Abrir la carpeta Impresora 3D-Proyecto2MN en VsCode y ejecutar en terminal:  
+- pip install -r Documentación/requirements.txt
+3. Ejecutar Impresora3D.py
+- Cargar archivo SVG.
+- Seleccionar resoluciones, por ejemplo 0.1 y 0.2 y la velocidad de impresión
+- Iniciar simulación
+
 
 
 ## INTEGRANTES: 
