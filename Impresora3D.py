@@ -217,6 +217,7 @@ class Impresora3DSimulada:
         x_vals, y_vals = zip(*self.puntos)
         self.ax.plot(x_vals, y_vals, 'bo-', markersize=4)
         self.ax.set_title("Modelo Cargado", fontweight="bold")
+        self.ax.set_aspect('equal')  # Aquí se agrega la corrección de escala
         self.canvas.draw()
 
     def generar_trayectoria(self):
@@ -269,6 +270,8 @@ class Impresora3DSimulada:
         self.ax.clear()
         self.dibujar_modelo()
         self.ax.set_title("Simulación de Impresión", fontweight="bold")
+        self.ax.set_aspect(
+            'equal')  # Aquí también se agrega la corrección de escala
         self.imprimir_paso()
 
     def reiniciar_simulacion(self):
@@ -290,6 +293,9 @@ class Impresora3DSimulada:
             x_vals, y_vals = zip(*self.trayectoria[:self.index_imprimir +
                                                    incremento])
             self.ax.plot(x_vals, y_vals, 'r.', markersize=2)
+            self.ax.set_aspect(
+                'equal'
+            )  # Y aquí también para mantener la escala durante la impresión
             self.canvas.draw()
             self.index_imprimir += incremento
             velocidad = max(1, self.slider_velocidad.get())
