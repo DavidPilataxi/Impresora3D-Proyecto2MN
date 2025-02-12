@@ -56,7 +56,7 @@ Click aquí:
 
 Click aquí:
 
-[![Haz clic para ver el video](Img/imagen3.png)](Video_Ejemplo.mp4)
+[![Haz clic para ver el video](Img/imagen3.png)](Video_Impresora_3D.mkv)
 
 
 ## TECNOLOGÍAS UTILIZADAS. -
